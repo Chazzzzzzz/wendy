@@ -1,6 +1,6 @@
 # Wendy Memory System
 
-This document specifies how Wendy stores and uses memory. It is **not** raw chat history; it is a compressed psychological storyline the agent can use to give sharper, more contextual coaching later.
+This document specifies how Wendy stores and uses memory. It is **not** raw chat history; it is a compressed psychological storyline the agent can use to deliver sharper, more contextual interventions later.
 
 Wendy is not a generic task executor. Her memory should stay focused on:
 
@@ -127,7 +127,7 @@ output: 0+ new or updated memory objects
    - importance: Does this matter for long-term behavior or identity?
    - emotional_intensity: How strong is the emotion signal?
    - novelty: Is this new vs. what we already know?
-   - wendy_relevance: Will this change future coaching?
+   - wendy_relevance: Will this change future interventions?
 
 4. FILTER
    - Keep only candidates whose combined score ≥ threshold.
@@ -240,7 +240,7 @@ Internally, `update` runs the write pipeline (Section 2) and `get_context` runs 
 
 This keeps Wendy's memory:
 - **Psychologically dense** instead of verbose.
-- **Actionable** for coaching.
+- **Actionable** for Wendy's interventions.
 - **Small** enough to fit comfortably in the model context.
 
 ---
@@ -335,10 +335,10 @@ similar situation detected
 
 ### 6.4 Practical Heuristics
 
-- Limit stored outcome detail to **what changes future coaching** (follow-through, result, tone feedback).
+- Limit stored outcome detail to **what changes future interventions** (follow-through, result, tone feedback).
 - Consider only the **last few** similar episodes when revising advice (e.g. 3–5), to avoid overfitting to very old behavior.
 - If prior advice consistently fails (low `wendy_effectiveness`), bias toward:
   - **earlier**, more preventive interventions,
   - **simpler**, more binding rules (checklists, hard stops),
-  - or a **different angle** (e.g. shifting from pure trading tactics to deeper identity / attachment work).
+  - or a **different angle** (e.g. shifting from surface-level trading talk to deeper identity / attachment work).
 
